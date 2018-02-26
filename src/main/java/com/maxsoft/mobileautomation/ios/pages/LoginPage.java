@@ -1,11 +1,11 @@
-package com.pearson.smartflashcards.ios.pages;
+package com.maxsoft.mobileautomation.ios.pages;
 
-import com.pearson.smartflashcards.ios.common.Base;
+import com.maxsoft.mobileautomation.ios.common.Base;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
-import static com.pearson.smartflashcards.ios.util.DriverSetup.iosDriver;
+import static com.maxsoft.mobileautomation.ios.util.DriverSetup.iosDriver;
 
 
 /**

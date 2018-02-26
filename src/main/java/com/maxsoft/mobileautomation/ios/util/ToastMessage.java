@@ -1,4 +1,4 @@
-package com.pearson.smartflashcards.ios.util;
+package com.maxsoft.mobileautomation.ios.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import com.aspose.ocr.ImageStream;
 import com.aspose.ocr.OcrEngine;
-import com.pearson.smartflashcards.ios.common.Base;
+import com.maxsoft.mobileautomation.ios.common.Base;
 import static org.bytedeco.javacpp.lept.pixDestroy;
 import static org.bytedeco.javacpp.lept.pixRead;
 import org.bytedeco.javacpp.lept.PIX;

@@ -1,12 +1,13 @@
-package com.pearson.smartflashcards.ios.common;
+package com.maxsoft.mobileautomation.ios.common;
 
+import com.maxsoft.mobileautomation.ios.util.DriverSetup;
+import com.maxsoft.mobileautomation.ios.util.ToastMessage;
 import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.testng.Assert;
-import com.pearson.smartflashcards.ios.util.DriverSetup;
-import com.pearson.smartflashcards.ios.util.ToastMessage;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class CommonStepDefinitions {
     @Step("Verify that the toast message is <toastMessage>")
     public void verifyToastMessage(String toastMessage) throws Exception {
         //Assert.assertTrue(ToastMessage.getToastMessage().contains(toastMessage), "Invalid Toast Message");
-        Assert.assertEquals(ToastMessage.getToastMessageContent(), toastMessage, "Invalid toast message!");
+        Assert.assertEquals( ToastMessage.getToastMessageContent(), toastMessage, "Invalid toast message!");
     }
 
     @Step("Wait <seconds> seconds")

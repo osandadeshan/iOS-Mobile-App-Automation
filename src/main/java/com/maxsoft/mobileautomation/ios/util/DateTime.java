@@ -1,4 +1,4 @@
-package com.pearson.smartflashcards.ios.util;
+package com.maxsoft.mobileautomation.ios.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

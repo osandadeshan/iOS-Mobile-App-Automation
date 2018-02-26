@@ -28,7 +28,7 @@ Verify that an invalid user cannot login to the application
 * Verify that a user can login into the application using valid username and password
      |Username       |Password       |
      |---------------|---------------|
-     |Supun          |Password       |
+     |Osanda         |Password       |
 * Verify that the login is fail
 
 

@@ -1,13 +1,13 @@
-package com.pearson.smartflashcards.ios.stepdefinitions;
+package com.maxsoft.mobileautomation.ios.stepdefinitions;
 
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.openqa.selenium.support.PageFactory;
-import com.pearson.smartflashcards.ios.pages.LoginPage;
+import com.maxsoft.mobileautomation.ios.pages.LoginPage;
 import java.io.IOException;
 import java.util.List;
-import static com.pearson.smartflashcards.ios.util.DriverSetup.iosDriver;
+import static com.maxsoft.mobileautomation.ios.util.DriverSetup.iosDriver;
 
 
 /**

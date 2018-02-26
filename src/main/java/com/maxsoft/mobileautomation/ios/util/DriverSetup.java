@@ -1,4 +1,4 @@
-package com.pearson.smartflashcards.ios.util;
+package com.maxsoft.mobileautomation.ios.util;
 
 import com.thoughtworks.gauge.AfterSuite;
 import com.thoughtworks.gauge.BeforeSuite;

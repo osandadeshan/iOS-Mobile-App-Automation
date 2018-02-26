@@ -1,5 +1,6 @@
-package com.pearson.smartflashcards.ios.common;
+package com.maxsoft.mobileautomation.ios.common;
 
+import com.maxsoft.mobileautomation.ios.util.FileReadWrite;
 import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.datastore.DataStore;
 import com.thoughtworks.gauge.datastore.DataStoreFactory;
@@ -13,14 +14,13 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import com.pearson.smartflashcards.ios.util.DriverSetup;
-import com.pearson.smartflashcards.ios.util.FileReadWrite;
+import com.maxsoft.mobileautomation.ios.util.DriverSetup;
 
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
-import static com.pearson.smartflashcards.ios.util.DriverSetup.iosDriver;
+import static com.maxsoft.mobileautomation.ios.util.DriverSetup.iosDriver;
 
 
 /**
@@ -30,9 +30,6 @@ import static com.pearson.smartflashcards.ios.util.DriverSetup.iosDriver;
 
 public class Base {
 
-    public String PLATFORM = System.getenv("testing_platform");
-    public final String ANDROID = "android";
-    public final String IOS = "ios";
     public final String WEBVIEW = System.getenv("webview");
     public final String NATIVE_APP = System.getenv("native_app");
     private Dimension size;
