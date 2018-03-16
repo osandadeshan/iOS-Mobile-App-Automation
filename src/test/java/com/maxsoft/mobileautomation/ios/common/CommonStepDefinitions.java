@@ -1,5 +1,6 @@
 package com.maxsoft.mobileautomation.ios.common;
 
+import com.maxsoft.mobileautomation.ios.pages.CommonElementsPage;
 import com.maxsoft.mobileautomation.ios.util.DriverSetup;
 import com.maxsoft.mobileautomation.ios.util.ToastMessage;
 import com.thoughtworks.gauge.Gauge;
@@ -7,7 +8,6 @@ import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.testng.Assert;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -20,8 +20,9 @@ import java.util.List;
 public class CommonStepDefinitions {
 
     private Base baseObj = new Base();
+    private CommonElementsPage commonElementsPage = new CommonElementsPage();
 
-    @Step("Testing platform information")
+    @Step("Get device configurations")
     public void platformInfo(){
         Gauge.writeMessage("Targeted platform is: iOS");
         Gauge.writeMessage("Targeted iOS Version: v" + DriverSetup.IOS_VERSION);
@@ -36,10 +37,10 @@ public class CommonStepDefinitions {
         DriverSetup.setupDriver();
     }
 
-    @Step("Verify that the toast message is <toastMessage>")
-    public void verifyToastMessage(String toastMessage) throws Exception {
+    @Step("Toast message is <toastMessage>")
+    public void isToastMessageEquals(String toastMessage) throws Exception {
         //Assert.assertTrue(ToastMessage.getToastMessage().contains(toastMessage), "Invalid Toast Message");
-        Assert.assertEquals( ToastMessage.getToastMessageContent(), toastMessage, "Invalid toast message!");
+        Assert.assertEquals(ToastMessage.getToastMessageContent(), toastMessage, "Invalid toast message!");
     }
 
     @Step("Wait <seconds> seconds")
@@ -82,12 +83,17 @@ public class CommonStepDefinitions {
         baseObj.navigateBackFromDevice();
     }
 
-    @Step("Verify the webview contains <text>")
+    @Step("WebView contains <text>")
     public void isWebViewTextEquals(String text) throws InterruptedException {
         baseObj.isWebViewTextEquals(text);
     }
 
-    @Step("Verify the webview contains the following text <table>")
+    @Step("Page title is <pageTitle>")
+    public void isPageTitle(String pageTitle) throws IOException{
+        baseObj.isPageTitleEquals(commonElementsPage.getPageTitleElement(pageTitle) , pageTitle);
+    }
+
+    @Step("WebView contains <table>")
     public void isWebViewTextEquals(Table table) throws InterruptedException {
         List<TableRow> rows = table.getTableRows();
         List<String> columnNames = table.getColumnNames();

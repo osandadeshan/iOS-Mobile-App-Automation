@@ -1,11 +1,11 @@
 package com.maxsoft.mobileautomation.ios.pages;
 
+import com.maxsoft.mobileautomation.ios.util.DriverSetup;
 import com.maxsoft.mobileautomation.ios.common.Base;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
-import static com.maxsoft.mobileautomation.ios.util.DriverSetup.iosDriver;
 
 
 /**
@@ -29,7 +29,7 @@ public class LoginPage extends Base {
     public WebElement ALERT_TITLE;
     @FindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Incorrect username or password!\"]")
     public WebElement ALERT_MESSAGE;
-    @FindBy(xpath = "//XCUIElementTypeButton[@name=\"Ok\"]")
+    @FindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
     public WebElement BTN_ALERT_OK;
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"createAccount\"]")
     public WebElement BTN_CREATE_ACCOUNT;
@@ -37,13 +37,9 @@ public class LoginPage extends Base {
     public WebElement LBL_EXPERT_DECKS_PAGE_TITLE;
 
     private static final String CREATE_ACCOUNT_BUTTON_LABEL = "Create account";
-    private static final String LOGIN_ERROR_TITLE = "Login Failed";
-    private static final String LOGIN_ERROR_MESSAGE = "Incorrect username or password!";
-    private static final String LOGIN_PAGE_TITLE = "Login";
-    private static final String EXPERT_DECKS_HOME_PAGE_TITLE = "Expert Decks";
 
     public LoginPage() {
-        PageFactory.initElements(iosDriver, this);
+        PageFactory.initElements(DriverSetup.iosDriver, this);
     }
 
     public void isLoginPageTitleEquals(String pageTitle) throws IOException {
@@ -61,19 +57,20 @@ public class LoginPage extends Base {
         clearText(TXT_PASSWORD);
     }
 
-    public void isLoginSuccess() throws IOException {
-        isPageTitleEquals(LBL_EXPERT_DECKS_PAGE_TITLE, EXPERT_DECKS_HOME_PAGE_TITLE);
-    }
-
     public void isLandingPageTitleEquals(String pageTitle) throws IOException {
         isPageTitleEquals(LBL_EXPERT_DECKS_PAGE_TITLE, pageTitle);
     }
 
-    public void isLoginFail() throws IOException {
-        isElementNameEquals(ALERT_TITLE, LOGIN_ERROR_TITLE);
-        isElementNameEquals(ALERT_MESSAGE, LOGIN_ERROR_MESSAGE);
+    public void isLoginErrorAlertTitleEquals(String loginErrorAlertTitle) throws IOException {
+        isElementNameEquals(ALERT_TITLE, loginErrorAlertTitle);
+    }
+
+    public void isLoginErrorAlertMessageEquals(String loginErrorAlertMessage) throws IOException {
+        isElementNameEquals(ALERT_MESSAGE, loginErrorAlertMessage);
+    }
+
+    public void tapLoginErrorAlertOkButton() throws IOException {
         tap(BTN_ALERT_OK);
-        isPageTitleEquals(LBL_LOGIN_PAGE_TITLE, LOGIN_PAGE_TITLE);
     }
 
     public void navigateToCreateAccount() throws IOException {

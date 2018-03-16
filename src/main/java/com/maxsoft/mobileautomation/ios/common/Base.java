@@ -1,5 +1,6 @@
 package com.maxsoft.mobileautomation.ios.common;
 
+import com.maxsoft.mobileautomation.ios.util.DriverSetup;
 import com.maxsoft.mobileautomation.ios.util.FileReadWrite;
 import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.datastore.DataStore;
@@ -14,13 +15,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import com.maxsoft.mobileautomation.ios.util.DriverSetup;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
-
-import static com.maxsoft.mobileautomation.ios.util.DriverSetup.iosDriver;
 
 
 /**
@@ -30,6 +27,10 @@ import static com.maxsoft.mobileautomation.ios.util.DriverSetup.iosDriver;
 
 public class Base {
 
+    public static String CURRENT_DIRECTORY = System.getProperty("user.dir");
+    public String PLATFORM = System.getenv("testing_platform");
+    public final String ANDROID = "android";
+    public final String IOS = "ios";
     public final String WEBVIEW = System.getenv("webview");
     public final String NATIVE_APP = System.getenv("native_app");
     private Dimension size;
@@ -37,7 +38,7 @@ public class Base {
     List <String> elementNameList = new ArrayList();
 
     public IOSDriver iosDriver(){
-        return iosDriver;
+        return DriverSetup.iosDriver;
     }
 
     public void printText(String text){
@@ -46,12 +47,12 @@ public class Base {
     }
 
     public void waitForElementClickable(WebElement element) throws IOException {
-        WebDriverWait wait = new WebDriverWait(iosDriver, 15);
+        WebDriverWait wait = new WebDriverWait(DriverSetup.iosDriver, 15);
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public void waitForElementVisible(WebElement element) throws IOException {
-        WebDriverWait wait = new WebDriverWait(iosDriver, 15);
+        WebDriverWait wait = new WebDriverWait(DriverSetup.iosDriver, 15);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
@@ -72,22 +73,22 @@ public class Base {
 
     public WebElement getElementByReplacingXpath(WebElement element, String textToBeReplaced, String replacementText) throws IOException {
         String modifiedXpath = element.getAttribute("xpath").replace(textToBeReplaced, replacementText);
-        WebDriverWait wait = new WebDriverWait(iosDriver, 15);
+        WebDriverWait wait = new WebDriverWait(DriverSetup.iosDriver, 15);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(modifiedXpath)));
-        return iosDriver.findElement(By.xpath(modifiedXpath));
+        return DriverSetup.iosDriver.findElement(By.xpath(modifiedXpath));
 
     }
 
     public void replaceXpathAndTapElement(WebElement element, String textToBeReplaced, String replacementText) throws IOException {
         String modifiedXpath = element.getAttribute("xpath").replace(textToBeReplaced, replacementText);
-        WebDriverWait wait = new WebDriverWait(iosDriver, 15);
+        WebDriverWait wait = new WebDriverWait(DriverSetup.iosDriver, 15);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(modifiedXpath)));
-        iosDriver.findElement(By.xpath(modifiedXpath)).click();
+        DriverSetup.iosDriver.findElement(By.xpath(modifiedXpath)).click();
     }
 
     public void hideKeyboard(){
         try {
-            iosDriver.hideKeyboard();
+            DriverSetup.iosDriver.hideKeyboard();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -153,7 +154,7 @@ public class Base {
     }
 
     public void isLabelTextEquals(String visibleText) {
-        iosDriver.findElement(By.xpath("//XCUIElementTypeStaticText[@name=\""+visibleText+"\"]"));
+        DriverSetup.iosDriver.findElement(By.xpath("//XCUIElementTypeStaticText[@name=\""+visibleText+"\"]"));
     }
 
     public void isElementVisible(WebElement element) throws IOException {
@@ -201,44 +202,44 @@ public class Base {
     }
 
     public void scrollDown() {
-        Dimension size = iosDriver.manage().window().getSize();
+        Dimension size = DriverSetup.iosDriver.manage().window().getSize();
         int startY = (int) (size.height * 0.7);
         int endY = (int) (size.height * 0.2);
         int startX = size.height / 2;
-        iosDriver.swipe(startX, startY, startX, endY, 800);
+        DriverSetup.iosDriver.swipe(startX, startY, startX, endY, 800);
     }
 
     public void scrollTo(String visibleText) {
-        iosDriver.findElementByIosUIAutomation("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+visibleText+"\").instance(0))");
+        DriverSetup.iosDriver.findElementByIosUIAutomation("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+visibleText+"\").instance(0))");
     }
 
     public void scrollAndTap(String visibleText) {
         try {
-            iosDriver.findElementByIosUIAutomation("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+visibleText+"\").instance(0))").click();
+            DriverSetup.iosDriver.findElementByIosUIAutomation("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+visibleText+"\").instance(0))").click();
         } catch (Exception ex){
-            iosDriver.findElement(By.xpath("//XCUIElementTypeStaticText[@name=\""+visibleText+"\"]")).click();
+            DriverSetup.iosDriver.findElement(By.xpath("//XCUIElementTypeStaticText[@name=\""+visibleText+"\"]")).click();
         }
     }
 
     public void tapMobileKeyboardEnter() {
-        TouchAction touchAction = new TouchAction(iosDriver);
+        TouchAction touchAction = new TouchAction(DriverSetup.iosDriver);
         touchAction.tap(750, 1150).perform();
     }
 
     public void isWebViewTextEquals(String text) {
-        Assert.assertTrue(iosDriver.findElement(By.xpath("//XCUIElementTypeStaticText[@content-desc=\""+ text +"\"]")).isDisplayed(), "\"" + text + "\" cannot be found in webview");
+        Assert.assertTrue(DriverSetup.iosDriver.findElement(By.xpath("//XCUIElementTypeStaticText[@content-desc=\""+ text +"\"]")).isDisplayed(), "\"" + text + "\" cannot be found in webview");
     }
 
     public void swipeToElement(WebElement element, int duration) throws IOException {
         int topY = element.getLocation().getY();
         int bottomY = topY + element.getSize().getHeight();
         int centerX = element.getLocation().getX() + (element.getSize().getWidth()/2);
-        iosDriver.swipe(centerX, bottomY, centerX, topY, duration);
+        DriverSetup.iosDriver.swipe(centerX, bottomY, centerX, topY, duration);
     }
 
     public void swipeLeftToRightHorizontally() throws InterruptedException {
         //Get the size of screen.
-        size = iosDriver.manage().window().getSize();
+        size = DriverSetup.iosDriver.manage().window().getSize();
         System.out.println(size);
 
         //Find swipe start and end point from screen's with and height.
@@ -251,13 +252,13 @@ public class Base {
         System.out.println("startx = " + startx + " ,endx = " + endx + " , starty = " + starty);
 
         //Swipe from Left to Right.
-        iosDriver.swipe(endx, starty, startx, starty, 500);
+        DriverSetup.iosDriver.swipe(endx, starty, startx, starty, 500);
         freeze(2);
     }
 
     public void swipeRightToLeftHorizontally() throws InterruptedException {
         //Get the size of screen.
-        size = iosDriver.manage().window().getSize();
+        size = DriverSetup.iosDriver.manage().window().getSize();
         System.out.println(size);
 
         //Find swipe start and end point from screen's with and height.
@@ -270,13 +271,13 @@ public class Base {
         System.out.println("startx = " + startx + " ,endx = " + endx + " , starty = " + starty);
 
         //Swipe from Right to Left.
-        iosDriver.swipe(startx, starty, endx, starty, 500);
+        DriverSetup.iosDriver.swipe(startx, starty, endx, starty, 500);
         freeze(2);
     }
 
     public void swipeTopToBottomVertically() throws InterruptedException {
         //Get the size of screen.
-        size = iosDriver.manage().window().getSize();
+        size = DriverSetup.iosDriver.manage().window().getSize();
         System.out.println(size);
 
         //Find swipe start and end point from screen's with and height.
@@ -289,13 +290,13 @@ public class Base {
         System.out.println("startY = " + startY + " ,endY = " + endY + " , startX = " + startX);
 
         //Swipe from Top to Bottom.
-        iosDriver.swipe(startX, endY, startX, startY, 500);
+        DriverSetup.iosDriver.swipe(startX, endY, startX, startY, 500);
         freeze(2);
     }
 
     public void swipeBottomToTopVertically() throws InterruptedException {
         //Get the size of screen.
-        size = iosDriver.manage().window().getSize();
+        size = DriverSetup.iosDriver.manage().window().getSize();
         System.out.println(size);
 
         //Find swipe start and end point from screen's with and height.
@@ -308,12 +309,12 @@ public class Base {
         System.out.println("startY = " + startY + " ,endY = " + endY + " , startX = " + startX);
 
         //Swipe from Bottom to Top.
-        iosDriver.swipe(startX, startY, startX, endY, 500);
+        DriverSetup.iosDriver.swipe(startX, startY, startX, endY, 500);
         freeze(2);
     }
 
     public List<WebElement> getElementsByClassName(String classNameOfElementList, String elementId){
-        elements = iosDriver.findElementByClassName(classNameOfElementList).findElements(By.id(elementId));
+        elements = DriverSetup.iosDriver.findElementByClassName(classNameOfElementList).findElements(By.id(elementId));
         return elements;
     }
 
@@ -352,13 +353,13 @@ public class Base {
 
     public String getHTMLPageSource(){
         switchContextTo(WEBVIEW);
-        return iosDriver.getPageSource();
+        return DriverSetup.iosDriver.getPageSource();
     }
 
     public String getHTMLPageSource(String url){
         switchContextTo(WEBVIEW);
-        iosDriver.navigate().to(url);
-        return iosDriver.getPageSource();
+        DriverSetup.iosDriver.navigate().to(url);
+        return DriverSetup.iosDriver.getPageSource();
     }
 
     public void saveHTMLPageSource(String filePath){
@@ -367,7 +368,7 @@ public class Base {
     }
 
     public void getContextNames(){
-        Set<String> contextNames = iosDriver.getContextHandles();
+        Set<String> contextNames = DriverSetup.iosDriver.getContextHandles();
         for (String contextName : contextNames) {
             System.out.println(contextNames); //prints out something like NATIVE_APP \n WEBVIEW_1
         }
@@ -375,9 +376,9 @@ public class Base {
 
     public void switchContextTo(String context){
         if (context.toLowerCase().equals(WEBVIEW.toLowerCase())) {
-            iosDriver.context(WEBVIEW); // set context to WEBVIEW_1
+            DriverSetup.iosDriver.context(WEBVIEW); // set context to WEBVIEW_1
         } else {
-            iosDriver.context(NATIVE_APP); // set context to NATIVE_APP
+            DriverSetup.iosDriver.context(NATIVE_APP); // set context to NATIVE_APP
         }
     }
     public void freeze(int seconds){
@@ -389,18 +390,18 @@ public class Base {
     }
 
     public void navigateBackFromDevice(){
-        iosDriver.navigate().back();
+        DriverSetup.iosDriver.navigate().back();
     }
 
     public void setDatePickerIOS(WebElement datePickerIOS, String month, String date, String year){
-        ((IOSElement)iosDriver.findElements(By.className("UIAPickerWheel")).get(0)).sendKeys("Sun 25 Jan");
+        ((IOSElement) DriverSetup.iosDriver.findElements(By.className("UIAPickerWheel")).get(0)).sendKeys("Sun 25 Jan");
         datePickerIOS.click();
-        MobileElement monthElement = (MobileElement) iosDriver.findElements(By.className("UIAPickerWheel")).get(0);
+        MobileElement monthElement = (MobileElement) DriverSetup.iosDriver.findElements(By.className("UIAPickerWheel")).get(0);
         monthElement.sendKeys(month);
-        MobileElement dateElement = (MobileElement) iosDriver.findElementByXPath("//XCUIElementTypeApplication[@name=\"SmartFlashcards\"]/XCUIElementTypeWindow[4]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeDatePicker/XCUIElementTypeOther/XCUIElementTypePickerWheel[2]");
+        MobileElement dateElement = (MobileElement) DriverSetup.iosDriver.findElementByXPath("//XCUIElementTypeApplication[@name=\"SmartFlashcards\"]/XCUIElementTypeWindow[4]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeDatePicker/XCUIElementTypeOther/XCUIElementTypePickerWheel[2]");
         dateElement.click();
         dateElement.sendKeys(date);
-        MobileElement yearElement = (MobileElement) iosDriver.findElementByXPath("//XCUIElementTypeApplication[@name=\"SmartFlashcards\"]/XCUIElementTypeWindow[4]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeDatePicker/XCUIElementTypeOther/XCUIElementTypePickerWheel[3]");
+        MobileElement yearElement = (MobileElement) DriverSetup.iosDriver.findElementByXPath("//XCUIElementTypeApplication[@name=\"SmartFlashcards\"]/XCUIElementTypeWindow[4]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeDatePicker/XCUIElementTypeOther/XCUIElementTypePickerWheel[3]");
         yearElement.sendKeys(year);
     }
 

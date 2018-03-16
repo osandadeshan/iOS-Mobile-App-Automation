@@ -1,13 +1,13 @@
 package com.maxsoft.mobileautomation.ios.stepdefinitions;
 
+import com.maxsoft.mobileautomation.ios.pages.LoginPage;
+import com.maxsoft.mobileautomation.ios.util.DriverSetup;
 import com.thoughtworks.gauge.Step;
 import com.thoughtworks.gauge.Table;
 import com.thoughtworks.gauge.TableRow;
 import org.openqa.selenium.support.PageFactory;
-import com.maxsoft.mobileautomation.ios.pages.LoginPage;
 import java.io.IOException;
 import java.util.List;
-import static com.maxsoft.mobileautomation.ios.util.DriverSetup.iosDriver;
 
 
 /**
@@ -17,15 +17,15 @@ import static com.maxsoft.mobileautomation.ios.util.DriverSetup.iosDriver;
 
 public class LoginPageStepDefinitions {
 
-    private LoginPage loginPage = PageFactory.initElements(iosDriver, LoginPage.class);
+    private LoginPage loginPage = PageFactory.initElements(DriverSetup.iosDriver, LoginPage.class);
 
-    @Step("Verify that the Login page title is <pageTitle>")
-    public void verifyLoginPageTitle(String pageTitle) throws IOException {
+    @Step("Login page title is <pageTitle>")
+    public void isLoginPageTitleEquals(String pageTitle) throws IOException {
         loginPage.isLoginPageTitleEquals(pageTitle);
     }
 
-    @Step("Verify that a user can login into the application using valid username and password <table>")
-    public void verifyLogin(Table table) throws IOException {
+    @Step("User login to the application using the username and the password <table>")
+    public void login(Table table) throws IOException {
         List<TableRow> rows = table.getTableRows();
         List<String> columnNames = table.getColumnNames();
         for (TableRow row : rows) {
@@ -38,7 +38,7 @@ public class LoginPageStepDefinitions {
         loginPage.clearTextFields();
     }
 
-    @Step("Verify that the Create Account button is visible")
+    @Step("Create Account button should be visible")
     public void isCreateAccountButtonVisible() throws IOException {
         loginPage.isCreateAccountButtonVisible();
     }
@@ -48,18 +48,23 @@ public class LoginPageStepDefinitions {
         loginPage.navigateToCreateAccount();
     }
 
-    @Step("Verify that the login is success")
-    public void isLoginSuccess() throws IOException {
-        loginPage.isLoginSuccess();
+    @Step("Login error alert title is <loginErrorAlertTitle>")
+    public void isLoginErrorAlertTitleEquals(String loginErrorAlertTitle) throws IOException {
+        loginPage.isLoginErrorAlertTitleEquals(loginErrorAlertTitle);
     }
 
-    @Step("Verify that the login is fail")
-    public void isLoginFail() throws IOException {
-        loginPage.isLoginFail();
+    @Step("Login error alert message is <loginErrorAlertMessage>")
+    public void isLoginErrorAlertMessageEquals(String loginErrorAlertMessage) throws IOException {
+        loginPage.isLoginErrorAlertMessageEquals(loginErrorAlertMessage);
     }
 
-    @Step("Verify that the user lands to the <pageTitle> page")
-    public void verifyLandingPage(String pageTitle) throws IOException {
+    @Step("Tap on Ok button in the login error alert")
+    public void tapLoginErrorAlertOkButton() throws IOException {
+        loginPage.tapLoginErrorAlertOkButton();
+    }
+
+    @Step("User lands to the <pageTitle> page")
+    public void isLandingPageTitleEquals(String pageTitle) throws IOException {
         loginPage.isLandingPageTitleEquals(pageTitle);
     }
 

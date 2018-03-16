@@ -3,12 +3,13 @@ package com.maxsoft.mobileautomation.ios.util;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import com.maxsoft.mobileautomation.ios.common.Base;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import com.aspose.ocr.ImageStream;
 import com.aspose.ocr.OcrEngine;
-import com.maxsoft.mobileautomation.ios.common.Base;
+import static com.maxsoft.mobileautomation.ios.common.Base.CURRENT_DIRECTORY;
 import static org.bytedeco.javacpp.lept.pixDestroy;
 import static org.bytedeco.javacpp.lept.pixRead;
 import org.bytedeco.javacpp.lept.PIX;
@@ -22,16 +23,15 @@ import org.bytedeco.javacpp.tesseract.TessBaseAPI;
 
 public abstract class ToastMessage {
 
-    static Base baseObj = new Base();
-    static String projectRootDir = System.getProperty("user.dir");
-    static String screenshotFolderPath = projectRootDir + "\\resources\\screenshots";
-    static String screenshotFileName = "toastmessage1.png";
-    static String imagePath = screenshotFolderPath + "\\" + screenshotFileName;
-    static TessBaseAPI api = new TessBaseAPI();
+    public static Base baseObj = new Base();
+    public static String screenshotFolderPath = CURRENT_DIRECTORY + "resources"+ File.separator + "screenshots";
+    public static String screenshotFileName = "toastmessage1.png";
+    public static String imagePath = screenshotFolderPath + File.separator + screenshotFileName;
+    public static TessBaseAPI tessBaseAPI = new TessBaseAPI();
 
     public static void initTesseract(){
         System.out.println("Initializing Tesseract library...............");
-        if (api.Init(projectRootDir+"/resources/tessdata", "eng") != 0) {
+        if (tessBaseAPI.Init(CURRENT_DIRECTORY + File.separator + "resources"+ File.separator +"tessdata", "eng") != 0) {
             System.err.println("Could not initialize Tesseract library.");
         } else {
             System.out.println("Successfully initialized Tesseract library.");
@@ -63,8 +63,8 @@ public abstract class ToastMessage {
         Boolean isMsgContains = false;
         captureScreenshot(screenshotFolderPath);
         PIX image = pixRead(imagePath);
-        api.SetImage(image);
-        outText = api.GetUTF8Text().getString().replaceAll("\\s", "");
+        tessBaseAPI.SetImage(image);
+        outText = tessBaseAPI.GetUTF8Text().getString().replaceAll("\\s", "");
         return outText;
     }
 
@@ -74,8 +74,8 @@ public abstract class ToastMessage {
         Boolean isMsgContains = false;
         captureScreenshot(screenshotFolderPath);
         PIX image = pixRead(imagePath);
-        api.SetImage(image);
-        outText = api.GetUTF8Text().getString().replaceAll("\\s", "");
+        tessBaseAPI.SetImage(image);
+        outText = tessBaseAPI.GetUTF8Text().getString().replaceAll("\\s", "");
         System.out.println(outText);
         isMsgContains = outText.contains(msg);
         pixDestroy(image);
@@ -87,7 +87,7 @@ public abstract class ToastMessage {
                 .getScreenshotAs(OutputType.FILE);
         try {
             Arrays.stream(new File(folderPath).listFiles()).forEach(File::delete);  // Delete all files in the directory (sub-directories are untouched)
-            String filePath = folderPath + "\\" + screenshotFileName;
+            String filePath = folderPath + File.separator + screenshotFileName;
             FileUtils.copyFile(scrFile, new File(filePath));
         } catch (IOException e) {
             e.printStackTrace();

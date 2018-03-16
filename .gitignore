@@ -1,9 +1,5 @@
 /logs
-
+/.DS_Store
 /target
-/iOS Mobile App Automation.iml
 /manifest.json
-/.gauge
-/.idea
-
-/libs
+/Pearson_Prep_iOS_Mobile_App_Test_Automation.iml
