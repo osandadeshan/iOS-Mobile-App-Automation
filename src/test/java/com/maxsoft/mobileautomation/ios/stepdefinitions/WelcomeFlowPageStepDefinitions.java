@@ -16,12 +16,12 @@ public class WelcomeFlowPageStepDefinitions {
 
     private WelcomeFlowPage welcomeFlowPage = PageFactory.initElements(DriverSetup.iosDriver, WelcomeFlowPage.class);
 
-    @Step("Tap on skip button")
+    @Step("Tap on Skip button")
     public void tapSkipButton() throws IOException {
         welcomeFlowPage.tapSkipButton();
     }
 
-    @Step("Tap on got it button")
+    @Step("Tap on Got It button")
     public void tapGotItButton() throws IOException {
         welcomeFlowPage.tapGotItButton();
     }

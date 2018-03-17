@@ -49,6 +49,9 @@ public class LoginPage extends Base {
     public void login(String username, String password) throws IOException {
         setTextAs(TXT_USERNAME, username);
         setTextAs(TXT_PASSWORD, password);
+    }
+
+    public void tapSignInButton() throws IOException {
         tap(BTN_SIGN_IN);
     }
 

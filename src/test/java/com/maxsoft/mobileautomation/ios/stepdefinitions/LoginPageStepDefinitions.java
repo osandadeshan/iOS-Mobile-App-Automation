@@ -24,13 +24,18 @@ public class LoginPageStepDefinitions {
         loginPage.isLoginPageTitleEquals(pageTitle);
     }
 
-    @Step("User login to the application using the username and the password <table>")
+    @Step("Set the username and the password <table>")
     public void login(Table table) throws IOException {
         List<TableRow> rows = table.getTableRows();
         List<String> columnNames = table.getColumnNames();
         for (TableRow row : rows) {
             loginPage.login(row.getCell(columnNames.get(0)), row.getCell(columnNames.get(1)));
         }
+    }
+
+    @Step("Tap on Sign In button")
+    public void tapSignInButton() throws IOException {
+        loginPage.tapSignInButton();
     }
 
     @Step("Clear text fields in Login page")

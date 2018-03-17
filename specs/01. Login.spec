@@ -25,10 +25,11 @@ Verify that the Login page contains the Create Account button
 Verify that an invalid user cannot login to the application
 -----------------------------------------------------------
 * Login page title is "Login"
-* User login to the application using the username and the password
+* Set the username and the password
      |Username       |Password       |
      |---------------|---------------|
-     |Eranga         |Password       |
+     |Osanda         |Password       |
+* Tap on Sign In button
 * Login error alert title is "Login Failed"
 * Login error alert message is "Incorrect username or password!"
 * Tap on Ok button in the login error alert
@@ -43,10 +44,11 @@ Clear username and password textbox contents
 
 Verify that a valid user can login to the application
 -----------------------------------------------------
-* User login to the application using the username and the password
+* Set the username and the password
      |Username       |Password       |
      |---------------|---------------|
-     |Osanda12       |Password1      |
+     |osandadeshan   |Password1      |
+* Tap on Sign In button
 * User lands to the "Expert Decks" page
 
 
