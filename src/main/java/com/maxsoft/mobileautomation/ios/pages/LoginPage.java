@@ -16,25 +16,25 @@ import java.io.IOException;
 public class LoginPage extends Base {
 
     @FindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Login\"]")
-    public WebElement LBL_LOGIN_PAGE_TITLE;
+    private WebElement LBL_LOGIN_PAGE_TITLE;
     @FindBy(xpath = "//XCUIElementTypeTextField[@name=\"username\"]")
-    public WebElement TXT_USERNAME;
+    private WebElement TXT_USERNAME;
     @FindBy(xpath = "//XCUIElementTypeSecureTextField[@name=\"password\"]")
-    public WebElement TXT_PASSWORD;
+    private WebElement TXT_PASSWORD;
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"signIn\"]")
-    public WebElement BTN_SIGN_IN;
+    private WebElement BTN_SIGN_IN;
     @FindBy(xpath = "//XCUIElementTypeAlert[@name=\"Login Failed\"]/XCUIElementTypeOther")
-    public WebElement ALERT;
+    private WebElement ALERT;
     @FindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Login Failed\"]")
-    public WebElement ALERT_TITLE;
+    private WebElement ALERT_TITLE;
     @FindBy(xpath = "//XCUIElementTypeStaticText[@name=\"Incorrect username or password!\"]")
-    public WebElement ALERT_MESSAGE;
+    private WebElement ALERT_MESSAGE;
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"OK\"]")
-    public WebElement BTN_ALERT_OK;
+    private WebElement BTN_ALERT_OK;
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"createAccount\"]")
-    public WebElement BTN_CREATE_ACCOUNT;
+    private WebElement BTN_CREATE_ACCOUNT;
     @FindBy(xpath = "//XCUIElementTypeNavigationBar[@name=\"Expert Decks\"]")
-    public WebElement LBL_EXPERT_DECKS_PAGE_TITLE;
+    private WebElement LBL_EXPERT_DECKS_PAGE_TITLE;
 
     private static final String CREATE_ACCOUNT_BUTTON_LABEL = "Create account";
 

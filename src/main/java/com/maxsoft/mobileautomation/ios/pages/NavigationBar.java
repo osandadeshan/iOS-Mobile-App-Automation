@@ -16,13 +16,13 @@ import java.io.IOException;
 public class NavigationBar extends Base {
 
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"Expert Decks\"]")
-    public WebElement BTN_EXPERTDECK;
+    private WebElement BTN_EXPERTDECK;
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"My Decks\"]")
-    public WebElement BTN_MYDECK;
+    private WebElement BTN_MYDECK;
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"Archived\"]")
-    public WebElement BTN_ARCHIVED;
+    private WebElement BTN_ARCHIVED;
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"Settings\"]")
-    public WebElement BTN_SETTINGS;
+    private WebElement BTN_SETTINGS;
 
     public NavigationBar() {
         PageFactory.initElements(DriverSetup.iosDriver, this);

@@ -16,11 +16,11 @@ import java.io.IOException;
 public class WelcomeFlowPage extends Base {
 
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"Skip\"]")
-    public WebElement BTN_SKIP;
+    private WebElement BTN_SKIP;
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"Next\"]")
-    public WebElement BTN_NEXT;
+    private WebElement BTN_NEXT;
     @FindBy(xpath = "//XCUIElementTypeButton[@name=\"Got It\"]")
-    public WebElement BTN_GOT_IT;
+    private WebElement BTN_GOT_IT;
 
     public WelcomeFlowPage() {
         PageFactory.initElements(DriverSetup.iosDriver, this);
