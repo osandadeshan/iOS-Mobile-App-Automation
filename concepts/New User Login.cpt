@@ -1,6 +1,9 @@
-Created by Osanda Deshan on 9/23/2017
-
-This is a concept file with following syntax for each concept.
+Project Name : iOS_Mobile_App_Test_Automation
+Developer    : Osanda Deshan
+Version      : 1.0.0
+Date         : 8/28/18
+Time         : 12:08 PM
+Description  : This is a concept file with following syntax for each concept.
 
 
 
@@ -12,6 +15,5 @@ This is a concept file with following syntax for each concept.
      |---------------|---------------|
      |<username>     |<password>     |
 * Tap on Sign In button
-* Tap on Skip button
-* Tap on Got It button
+* Tap on "Skip" button
 * User lands to the "Expert Decks" page

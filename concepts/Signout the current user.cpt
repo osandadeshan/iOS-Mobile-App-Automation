@@ -1,0 +1,14 @@
+Project Name : iOS_Mobile_App_Test_Automation
+Developer    : Osanda Deshan
+Version      : 1.0.0
+Date         : 8/27/18
+Time         : 12:44 PM
+Description  : This is a concept file with following syntax for each concept.
+
+
+
+# Signout the current user
+
+* On Settings page
+* Tap on Signout button
+* Tap on Ok button in Signout Alert box

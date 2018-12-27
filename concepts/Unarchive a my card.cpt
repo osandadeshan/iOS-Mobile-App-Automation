@@ -1,0 +1,17 @@
+Project Name : iOS_Mobile_App_Test_Automation
+Developer    : Osanda Deshan
+Version      : 1.0.0
+Date         : 9/7/18
+Time         : 10:53 AM
+Description  : This is a concept file with following syntax for each concept.
+
+
+
+# Unarchive <cardTitle> card in <deckTitle> my deck
+
+
+* On Card list page of <deckTitle> my deck
+* Tap on "lastModified" button
+* Tap on "Archived cards"
+* Tap on "Apply" button
+* <cardTitle> Card should be visible

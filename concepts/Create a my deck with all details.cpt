@@ -1,0 +1,22 @@
+Project Name : iOS_Mobile_App_Test_Automation
+Developer    : Osanda Deshan
+Version      : 1.0.0
+Date         : 8/22/18
+Time         : 12:11 PM
+Description  : This is a concept file with following syntax for each concept.
+
+
+
+# Create <myDeckTitle> my deck with the exam date of <month> <date> <year> and the reminder time as <hour> <minute> <amPm> to remind <reminderFrequency>
+
+* On My Decks page
+* Tap on "Create new deck" button
+* Page title is "Deck Info"
+* Set the deck title as <myDeckTitle>
+* Toggle is "Deactive" (Active or Deactive)
+* Set the exam date <month> <date> <year> (Month Date Year)
+* Toggle is "Active" (Active or Deactive)
+* Tap on exam reminder frequency type picker
+* Set exam reminder frequency type picker as <reminderFrequency>
+* Set exam reminder time <hour> <minute> <amPm> (Hour Minute AM/PM)
+* Save the deck

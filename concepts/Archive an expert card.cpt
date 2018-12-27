@@ -1,0 +1,16 @@
+Project Name : iOS_Mobile_App_Test_Automation
+Developer    : Osanda Deshan
+Version      : 1.0.0
+Date         : 9/7/18
+Time         : 10:53 AM
+Description  : This is a concept file with following syntax for each concept.
+
+
+
+# Archive <cardTitle> card in <deckTitle> expert deck
+
+
+* On Card list page of <deckTitle> expert deck
+* Tap Option button in <cardTitle> card
+* Tap on "Archive Card" button
+* <cardTitle> Card should not be visible

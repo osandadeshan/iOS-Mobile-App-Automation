@@ -1,0 +1,16 @@
+Project Name : iOS_Mobile_App_Test_Automation
+Developer    : Osanda Deshan
+Version      : 1.0.0
+Date         : 8/28/18
+Time         : 12:08 PM
+Description  : This is a concept file with following syntax for each concept.
+
+
+
+# On Card list page of <expertDeckTitle> expert deck
+
+* On Expert Decks page
+* Tap on <expertDeckTitle> expert deck
+* Deck title is <expertDeckTitle>
+* Tap on View Cards button
+* Page title is <expertDeckTitle>
